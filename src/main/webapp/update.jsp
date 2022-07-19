@@ -9,13 +9,13 @@
 <title>Insert title here</title>
 </head>
 <%
-TodoDTO todo = (TodoDTO)request.getAttribute("todo");
+TodoDTO todoDTO = (TodoDTO)request.getAttribute("content");
 %>
 <body>
 <form action="update-servlet" method="post" >
-	<label>Todo: </label><input type="text" name="<%=Parameters.TODO %>" value="<%=todo.getTodo()%>">
-	<input type="hidden" name="<%=Parameters.TODO_ID %>" value="<%=todo.getId() %>">
-	<input type="submit" value="Todoを更新する">
+	<label>Todo: </label><input type="text" name="<%=Parameters.sTODO_Content %>" value="<%=todoDTO.getTodoContent()%>">
+	<input type="hidden" name="<%=Parameters.sTODO_ID %>" value="<%=todoDTO.getTodoId() %>">
+	<input type="submit" value="Todoを更新">
 </form>
 
 </body>

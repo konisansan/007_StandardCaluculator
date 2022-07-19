@@ -14,19 +14,19 @@ public class DeleteDAO {
 	 * @throws SQLException
 	 * @throws ClassNotFoundException
 	 */
-	public int deleteTodo(int id) throws SQLException, ClassNotFoundException {
+	public int deleteTodo(int iTodoId) throws SQLException, ClassNotFoundException {
 		int processingNumber = 0;
 
 		// SQL文
-		String sql = "DELETE FROM todo WHERE id = ?";
+		String sDeleteSQL = "DELETE FROM todo WHERE id = ?";
 
 		// DBに接続し、Todoを削除する
-		try (Connection con = DBConnection.getConnection(); PreparedStatement pstmt = con.prepareStatement(sql)) {
-			// idを設定する
-			pstmt.setInt(1, id);
+		try (Connection con = DBConnection.getConnection(); PreparedStatement pStmt = con.prepareStatement(sDeleteSQL)) {
+			// todoIdを設定
+			pStmt.setInt(1, iTodoId);
 
-			// SQLを実行する
-			processingNumber = pstmt.executeUpdate();
+			// SQLの実行
+			processingNumber = pStmt.executeUpdate();
 		}
 		return processingNumber;
 	}

@@ -30,13 +30,13 @@ public class UpdateServlet extends BaseServlet {
 	@Override
 	protected void exec(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, SQLException, ClassNotFoundException {
-		// メソッドの取得
-		String method = request.getMethod();
+		// メソッドを取得
+		String sMethod = request.getMethod();
 
 		// リクエストメソッドの種類によって呼ぶ関数を変える
-		if (method.equals("GET")) {
+		if (sMethod.equals("GET")) {
 			getGetRequest(request, response);
-		} else if (method.equals("POST")) {
+		} else if (sMethod.equals("POST")) {
 			getPostRequest(request, response);
 		}
 	}
@@ -47,20 +47,20 @@ public class UpdateServlet extends BaseServlet {
 	protected void getGetRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, SQLException, ClassNotFoundException {
 		// リクエストパラメータからtodoIdを取得する
-		int todoId = 0;
+		int iTodoId = 0;
 		try {
-			todoId = Integer.parseInt(request.getParameter(Parameters.TODO_ID));
+			iTodoId = Integer.parseInt(request.getParameter(Parameters.sTODO_ID));
 		} catch (NumberFormatException e) {
 			request.getRequestDispatcher("list-servlet").forward(request, response);
 		}
 
-		UpdateDAO dao = new UpdateDAO();
-		TodoDTO todo = new TodoDTO();
+		UpdateDAO updateDAO = new UpdateDAO();
+		TodoDTO todoDTO = new TodoDTO();
 
 		// todoの取得
-		todo = dao.getTodo(todoId);
+		todoDTO = updateDAO.getTodo(iTodoId);
 
-		request.setAttribute("todo", todo);
+		request.setAttribute("todo", todoDTO);
 		request.getRequestDispatcher("WEB-INF/jsp/update.jsp").forward(request, response);
 	}
 
@@ -69,17 +69,16 @@ public class UpdateServlet extends BaseServlet {
 	 */
 	protected void getPostRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, SQLException, ClassNotFoundException {
-		// リクエストパラメータから値を取得する
+		// リクエストパラメータから値を取得
 		request.setCharacterEncoding("UTF-8");
-		int id = Integer.parseInt(request.getParameter(Parameters.TODO_ID));
-		String todo = request.getParameter(Parameters.TODO);
-
+		String sTodoContent = request.getParameter(Parameters.sTODO_Content);
+		int iTodoId = Integer.parseInt(request.getParameter(Parameters.sTODO_ID));
+		
 		// DAOを生成し、Todoを更新する
-		UpdateDAO dao = new UpdateDAO();
-
+		UpdateDAO updateDAO = new UpdateDAO();
+		
 		// 受け取ったパラメータを元にデータベースを更新する
-		dao.updateTodo(id, todo);
-
+		updateDAO.updateTodo(sTodoContent, iTodoId);
 		response.sendRedirect("list-servlet");
 	}
 
@@ -87,14 +86,14 @@ public class UpdateServlet extends BaseServlet {
 			throws ServletException, IOException {
 		// リクエストパラメータから値を取得する
 		request.setCharacterEncoding("UTF-8");
-		int id = Integer.parseInt(request.getParameter(Parameters.TODO_ID));
-		String todo = request.getParameter(Parameters.TODO);
+		String sTodoContent = request.getParameter(Parameters.sTODO_Content);
+		int iTodoId = Integer.parseInt(request.getParameter(Parameters.sTODO_ID));
 
 		// DAOを生成し、Todoを更新する
-		UpdateDAO dao = new UpdateDAO();
+		UpdateDAO updateDAO = new UpdateDAO();
 		try {
 			// 受け取ったパラメータを元にデータベースを更新する
-			dao.updateTodo(id, todo);
+			updateDAO.updateTodo(sTodoContent, iTodoId);
 		} catch (SQLException | ClassNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -108,18 +107,18 @@ public class UpdateServlet extends BaseServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// リクエストパラメータからtodoIdを取得する
-		int todoId = Integer.parseInt(request.getParameter(Parameters.TODO_ID));
+		int todoId = Integer.parseInt(request.getParameter(Parameters.sTODO_ID));
 
-		UpdateDAO dao = new UpdateDAO();
-		TodoDTO todo = new TodoDTO();
+		UpdateDAO updateDAO = new UpdateDAO();
+		TodoDTO todoDTO = new TodoDTO();
 		try {
 			// todoの取得
-			todo = dao.getTodo(todoId);
+			todoDTO = updateDAO.getTodo(todoId);
 		} catch (SQLException | ClassNotFoundException e) {
 			e.printStackTrace();
 		}
 
-		request.setAttribute("todo", todo);
+		request.setAttribute("content", todoDTO);
 		request.getRequestDispatcher("update.jsp").forward(request, response);
 	}
 

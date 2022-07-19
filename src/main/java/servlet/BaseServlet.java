@@ -42,7 +42,7 @@ public class BaseServlet extends HttpServlet {
 			throws ServletException, IOException {
 		// セッションからログイン中のユーザーIDを取得する
 		HttpSession session = request.getSession();
-		String loginUserId = (String) session.getAttribute(SessionInfo.LOGIN_USER_ID);
+		String loginUserId = (String) session.getAttribute(SessionInfo.sLOGIN_USER_ID);
 
 		// セッションにログイン中のユーザーIDが存在する時
 		if (loginUserId != null) {

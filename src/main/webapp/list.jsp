@@ -17,9 +17,9 @@
 	<%
 	for (TodoDTO todo : todoList) {
 	%>
-	<h5><%=todo.getTodo()%></h5>
-	<a href="update-servlet?<%=Parameters.TODO_ID %>=<%= todo.getId() %>">todoを更新する</a>
-	<a href="delete-servlet?<%=Parameters.TODO_ID %>=<%= todo.getId() %>">todoを削除する</a>
+	<p><%=todo.getTodoContent()%></p>
+	<a href="update-servlet?<%=Parameters.sTODO_ID %>=<%= todo.getTodoId() %>">更新</a>
+	<a href="delete-servlet?<%=Parameters.sTODO_ID %>=<%= todo.getTodoId() %>">削除</a>
 	<br>
 	<%
 	}
@@ -27,11 +27,11 @@
 
 
 	<form action="insert-servlet" method="post">
-		<label>Todo: </label><input type="text" name="<%=Parameters.TODO %>"><br>
+		<label>Todo: </label><input type="text" name="<%=Parameters.sTODO_Content %>"><br>
 		 <br>
-		<input type="submit" value="Todoを登録する">
+		<input type="submit" value="Todo追加">
 	</form>
-	
+	<a href="/007_StandardCaluculator/logout.jsp">ログアウト</a>
 	
 </body>
 </html>

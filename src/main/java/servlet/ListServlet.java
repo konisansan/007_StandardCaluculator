@@ -36,21 +36,21 @@ public class ListServlet extends BaseServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// todoの一覧を保持する変数を宣言
+		// todo一覧を格納します。
 		List<TodoDTO> todoList = new ArrayList<>();
 
-		// DAOを生成し、Todo一覧を取得する
-		TodoListDAO dao = new TodoListDAO();
+		// TodoListDAOを生成します。
+		TodoListDAO todoListDAO = new TodoListDAO();
 		try {
-			// todo一覧を取得する
-			todoList = dao.getTodoList();
+			// todo一覧を取得します。
+			todoList = todoListDAO.getTodoList();
 		} catch (SQLException | ClassNotFoundException e) {
 			e.printStackTrace();
 		}
 
-		// todo一覧をリクエストスコープに設定する
+		// todo一覧を設定します。
 		request.setAttribute("todoList", todoList);
-		// todo一覧画面に遷移する
+		// todo一覧画面に遷移します。
 		RequestDispatcher rd = request.getRequestDispatcher("list.jsp");
 		rd.forward(request, response);
 	}
@@ -66,23 +66,23 @@ public class ListServlet extends BaseServlet {
 	}
 
 	/**
-	 * todoテーブルからtodoを取得し、一覧表示する
+	 * todoテーブルからtodoを取得し、一覧表示します。
 	 */
 	@Override
 	protected void exec(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, SQLException, ClassNotFoundException {
-		// todoの一覧を保持する変数を宣言
+		// todo一覧を格納します。
 		List<TodoDTO> todoList = new ArrayList<>();
 
-		// DAOを生成し、Todo一覧を取得する
-		TodoListDAO dao = new TodoListDAO();
+		// todoListDAOを生成します。
+		TodoListDAO todoListDAO = new TodoListDAO();
 
 		// todo一覧を取得する
-		todoList = dao.getTodoList();
+		todoList = todoListDAO.getTodoList();
 
-		// todo一覧をリクエストスコープに設定する
+		// todo一覧を設定します。
 		request.setAttribute("todoList", todoList);
-		// todo一覧画面に遷移する
+		// todo一覧画面に遷移します。
 		RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/jsp/list.jsp");
 		rd.forward(request, response);
 	}

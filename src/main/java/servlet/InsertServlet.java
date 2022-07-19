@@ -30,13 +30,13 @@ public class InsertServlet extends BaseServlet {
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		// リクエストパラメータのname属性がtodoの値を受け取る
-		String todo = (String) request.getParameter(Parameters.TODO);
+		String sTodoContent = (String) request.getParameter(Parameters.sTODO_Content);
 		// リクエストパラメータのname属性がtimeLimitの値を受け取る
 		// DAOを生成し、Todoをデータベースに登録する
-		InsertDAO dao = new InsertDAO();
+		InsertDAO insertDAO = new InsertDAO();
 		try {
 			// 受け取ったパラメータを引数に渡す
-			dao.insertTodo(todo);
+			insertDAO.iInsertTodo(sTodoContent);
 
 		} catch (SQLException | ClassNotFoundException e) {
 			e.printStackTrace();
@@ -55,10 +55,10 @@ public class InsertServlet extends BaseServlet {
 		List<TodoDTO> todoList = new ArrayList<>();
 
 		// DAOを生成し、Todo一覧を取得する
-		TodoListDAO dao = new TodoListDAO();
+		TodoListDAO todoListDAO = new TodoListDAO();
 
 		// todo一覧を取得する
-		todoList = dao.getTodoList();
+		todoList = todoListDAO.getTodoList();
 
 		// todo一覧をリクエストスコープに設定する
 		request.setAttribute("todoList", todoList);

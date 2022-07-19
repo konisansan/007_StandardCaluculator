@@ -38,12 +38,12 @@ public class DeleteServlet extends BaseServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// リクエストパラメータから削除するTodoのidを取得する
-		int id = Integer.parseInt(request.getParameter(Parameters.TODO_ID));
+		int iTodoId = Integer.parseInt(request.getParameter(Parameters.sTODO_ID));
 
-		DeleteDAO dao = new DeleteDAO();
+		DeleteDAO deleteDAO = new DeleteDAO();
 		try {
 			// todoを削除する
-			dao.deleteTodo(id);
+			deleteDAO.deleteTodo(iTodoId);
 		} catch (SQLException | ClassNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -70,10 +70,10 @@ public class DeleteServlet extends BaseServlet {
 		List<TodoDTO> todoList = new ArrayList<>();
 
 		// DAOを生成し、Todo一覧を取得する
-		TodoListDAO dao = new TodoListDAO();
+		TodoListDAO todoListDAO = new TodoListDAO();
 
 		// todo一覧を取得する
-		todoList = dao.getTodoList();
+		todoList = todoListDAO.getTodoList();
 
 		// todo一覧をリクエストスコープに設定する
 		request.setAttribute("todoList", todoList);

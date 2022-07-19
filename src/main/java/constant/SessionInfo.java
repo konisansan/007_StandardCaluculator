@@ -9,5 +9,5 @@ public class SessionInfo {
 	/**
 	 * ログインユーザーのidを取得・設定する時に使用する定数
 	 */
-	public static final String LOGIN_USER_ID = "loginUserId";
+	public static final String sLOGIN_USER_ID = "loginUserId";
 }

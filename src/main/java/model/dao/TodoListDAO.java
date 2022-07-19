@@ -25,21 +25,21 @@ public class TodoListDAO {
 		List<TodoDTO> todoList = new ArrayList<>();
 
 		// 実行するSQL
-		String sql = "SELECT id, todo from todo";
+		String sql = "SELECT id, content from todo";
 
 		// DBに接続し、Todo一覧を取得する
-		try (Connection con = DBConnection.getConnection(); PreparedStatement pstmt = con.prepareStatement(sql)) {
+		try (Connection con = DBConnection.getConnection(); PreparedStatement pStmt = con.prepareStatement(sql)) {
 
 			// SQLを実行しResultSetの変数に結果を格納する
-			ResultSet res = pstmt.executeQuery();
+			ResultSet res = pStmt.executeQuery();
 			// 実行結果を順番に取り出す
 			while (res.next()) {
 				// それぞれid, todo, timeLimitを取得する
-				int id = res.getInt("id");
-				String todo = res.getString("todo");
+				int iTodoId = res.getInt("id");
+				String sTodoContent = res.getString("content");
 				
 				// 取得したid, todo, timeLimitでTodoDTOを初期化してListに追加
-				todoList.add(new TodoDTO(id, todo));
+				todoList.add(new TodoDTO(iTodoId, sTodoContent));
 			}
 		}
 

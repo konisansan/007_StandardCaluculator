@@ -2,57 +2,57 @@ package model.dao.dto;
 
 public class TodoDTO {
 	
-	//TodoのIdを保持する
-	private int id;
+	//TodoのIdを格納します
+	private int iTodoId;
 
-	//Todoの内容を保持する
-	private String todo;
+	//Todoの内容を格納します。
+	private String sTodoContent;
 
 	//引数なしコンストラクタ 初期化を行う
 	public TodoDTO() {
-		id = 0;
-		todo = "";
+		iTodoId = 0;
+		sTodoContent = "";
 	}
 
-	public TodoDTO(int id, String todo) {
-		this.id = id;
-		this.todo = todo;
-	}
-
-	/**
-	 * idを取得する
-	 * 
-	 * @return id
-	 */
-	public int getId() {
-		return id;
-	}
-
-	/**
-	 * idを設定する
-	 * 
-	 * @param id
-	 */
-	public void setId(int id) {
-		this.id = id;
+	public TodoDTO(int iTodoId, String sTodoContent) {
+		this.iTodoId = iTodoId;
+		this.sTodoContent = sTodoContent;
 	}
 
 	/**
 	 * Todoの内容を取得する
 	 * 
-	 * @return Todoの内容
+	 * @return todoContent
 	 */
-	public String getTodo() {
-		return todo;
+	public String getTodoContent() {
+		return sTodoContent;
 	}
 
 	/**
 	 * Todoの内容を設定する
 	 * 
-	 * @param todo
+	 * @param sTodoContent
 	 */
-	public void setTodo(String todo) {
-		this.todo = todo;
+	public void setTodoContent(String sTodoContent) {
+		this.sTodoContent = sTodoContent;
+	}
+	
+	/**
+	 * idを取得
+	 * 
+	 * @return todoId
+	 */
+	public int getTodoId() {
+		return iTodoId;
+	}
+
+	/**
+	 * idを設定
+	 * 
+	 * @param iTodoId
+	 */
+	public void setTodoId(int iTodoId) {
+		this.iTodoId = iTodoId;
 	}
 
 }

@@ -21,22 +21,22 @@ public class InsertDAO {
 	 * @throws ClassNotFoundException
 	 * @throws SQLException
 	 */
-	public int insertTodo(String todo)throws ClassNotFoundException, SQLException {
+	public int iInsertTodo(String sTodoContent)throws ClassNotFoundException, SQLException {
 		// 更新した行数を返却するための変数
-		int processingNumber = 0;
+		int iProcessingNumber = 0;
 
 		// 実行するSQL
-		String sql = "INSERT INTO todo (todo) VALUES (?)";
+		String sInsertSQL = "INSERT INTO todo (content) VALUES (?)";
 
 		// SQLを実行する
 		try(Connection con = DBConnection.getConnection();
-				PreparedStatement pstmt = con.prepareStatement(sql)) {
+				PreparedStatement pStmt = con.prepareStatement(sInsertSQL)) {
 			// パラメータに値を設定する
 			// 1つ目のパラメータにtodoの内容を設定
-			pstmt.setString(1, todo);
+			pStmt.setString(1, sTodoContent);
 			// SQLを実行し、実行行数を受け取る
-			processingNumber = pstmt.executeUpdate();
+			iProcessingNumber = pStmt.executeUpdate();
 		}
-		return processingNumber;
+		return iProcessingNumber;
 	}
 }
