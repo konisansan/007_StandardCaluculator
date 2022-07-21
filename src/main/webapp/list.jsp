@@ -31,7 +31,7 @@
 		 <br>
 		<input type="submit" value="Todo追加">
 	</form>
-	<a href="/007_StandardCaluculator/logout.jsp">ログアウト</a>
+	<a href="/008_StandardCaluculator/logout.jsp">ログアウト</a>
 	
 </body>
 </html>

@@ -15,7 +15,7 @@ session.invalidate();
 <br><br>
 ログアウトしました<br><br>
 
-<a href="/007_StandardCaluculator/login.jsp">再ログイン</a>
+<a href="/008_StandardCaluculator/login.jsp">再ログイン</a>
 <br><br><br><br>
 
 </body>
